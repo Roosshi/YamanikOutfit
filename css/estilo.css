@@ -1,0 +1,59 @@
+* {
+    font-family: arial;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.header {
+    background: #ec6fa9;
+    color: #ffffff;
+    padding: 30px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.menu {
+    padding: 10px;
+    background: #ec6fa9;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #ffffff;
+    background: #ec6fa9;
+    padding: 10px;
+}
+
+.menu a:hover {
+    background: #52515171;
+}
+
+.cuerpo {
+    background: #eaeaea;
+    padding: 30px;
+    min-height: 430px;
+}
+
+.footer {
+    background: #ec6fa9;
+    color: #ffffff;
+    text-align: center;
+    font-size: 10px;
+    padding: 50px;
+}
+
+.centrar_login {
+    width: 500px;
+    text-align: center;
+    padding-top: 100px;
+}
