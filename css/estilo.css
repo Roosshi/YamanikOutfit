@@ -105,3 +105,11 @@ a {
 .text-green {
     color: #63ca49;
 }
+
+.fa-times{
+    color: rgba(255, 0, 0, 0.692);
+}
+
+.fa-edit{
+    color: #032eb9e7;
+}

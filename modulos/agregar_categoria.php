@@ -19,20 +19,29 @@ if (isset($enviar)) {
     }
 }   
 
+if(isset($eliminar)){
+	$eliminar = clear($eliminar);
+	$mysqli->query("DELETE FROM categorias WHERE id = '$eliminar'");
+	alert("Categoria eliminada");
+	redir("?p=agregar_categoria");
+}
+
 
 ?>
 
 <h1>Agregar Categoria</h1>
 
 <form method="post" action="">
-    <div class="form-group">
-        <input type="text" class="form-control" name="categoria" placeholder="Categoria">
-    </div>
+	<div class="form-group">
+		<input type="text" class="form-control" name="categoria" placeholder="Categoria"/>
+	</div>
 
-    <div class="form-group">
-        <input type="submit" class="btn btn-primary" name="enviar" value="Agregar Categoria">
-    </div>
-</form>
+	<div class="form-group">
+		<input type="submit" class="btn btn-primary" name="enviar" value="Agregar categoria"/>
+	</div>
+</form><br>
+
+<br>
 
 <table class="table table-striped">
     <tr>

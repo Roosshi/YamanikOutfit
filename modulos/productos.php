@@ -1,5 +1,28 @@
+<select id="categoria" onchange="redir_cat" class="form-control">
+	<option value="">Seleccione una categoria</option>
+	<?php
+	$cats = $mysqli->query("SELECT * FROM categorias ORDER BY categoria ASC");
+	while ($rcat = mysqli_fetch_array($cats)) {
+	?>
+		<option value="<?= $rcat['id'] ?>"><?= $rcat['categoria'] ?></option>
+	<?php
+	}
+	?>
+</select>
+
+
+
 <?php
+
 check_user("productos");
+
+if (isset($cat)) {
+	$sc = $mysqli->query("SELECT * FROM categorias WHERE id = '$cat'");
+	$rc = mysqli_fetch_array($sc);
+	?>
+	<h1>Categoria filtrada por: <?=$rc['categoria']?></h1>
+	<?php
+}
 
 if (isset($agregar) && isset($cant)) {
 
@@ -18,12 +41,19 @@ if (isset($agregar) && isset($cant)) {
 		$q = $mysqli->query("INSERT INTO carro (id_cliente,id_producto,cant) VALUES ($id_cliente,$idp,$cant)");
 	}
 
-	
+
 	alert("Se ha agregado al carro de compras");
 	redir("?p=productos");
 }
 
-$q = $mysqli->query("SELECT * FROM productos ORDER BY id DESC");
+if(isset($cat)){
+
+	$q = $mysqli->query("SELECT * FROM productos WHERE id_categoria = '$cat' ORDER BY id DESC"); // quitarlo del if y ponerlo arriba del while
+}else{
+	$q = $mysqli->query("SELECT * FROM productos  ORDER BY id DESC");
+}
+
+
 while ($r = mysqli_fetch_array($q)) {
 ?>
 	<div class="producto">
@@ -43,5 +73,9 @@ while ($r = mysqli_fetch_array($q)) {
 		if (cant.length > 0) {
 			window.location = "?p=productos&agregar=" + idp + "&cant=" + cant;
 		}
+	}
+
+	function redir_cat() {
+		window.location = "?p=productos&cat=" + $("#categoria").val(); //Noseguro
 	}
 </script>
