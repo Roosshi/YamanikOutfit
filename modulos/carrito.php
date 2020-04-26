@@ -1,4 +1,6 @@
 <?php
+check_user('carrito');
+
 if (isset($finalizar)) {
 
     $monto = clear($monto_total);
