@@ -1,5 +1,5 @@
 * {
-    font-family: arial;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -12,8 +12,12 @@ a {
     color: #ffffff;
 }
 
+.logo {
+    text-align: center;
+}
+
 .header {
-    background: #ec6fa9;
+    background: #6989f0;
     color: #ffffff;
     padding: 30px;
     text-align: center;
@@ -24,14 +28,15 @@ a {
 
 .menu {
     padding: 10px;
-    background: #ec6fa9;
+    background: #6989f0;
 }
 
 .menu a {
     text-decoration: none;
     color: #ffffff;
-    background: #ec6fa9;
+    background: #6989f0;
     padding: 10px;
+    text-transform: uppercase;
 }
 
 .menu a:hover {
@@ -45,10 +50,10 @@ a {
 }
 
 .footer {
-    background: #ec6fa9;
+    background: #6989f0;
     color: #ffffff;
     text-align: center;
-    font-size: 10px;
+    font-size: 15px;
     padding: 50px;
 }
 
@@ -56,4 +61,47 @@ a {
     width: 500px;
     text-align: center;
     padding-top: 100px;
+}
+
+.producto {
+    display: inline-block;
+    width: 23%;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.05);
+    color: #333333;
+    margin: 5px;
+}
+
+.img_producto {
+    width: 404px;
+    height: 500px;
+}
+
+.name_producto {
+    padding: 10px;
+    color: #ffffff;
+    background: #6988f06b;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.precio {
+    color: #63ca49;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.subir {
+    position: relative;
+    bottom: 10px;
+}
+
+.imagen_carro {
+    width: 50px;
+    height: 50px;
+}
+
+.text-green {
+    color: #63ca49;
 }
