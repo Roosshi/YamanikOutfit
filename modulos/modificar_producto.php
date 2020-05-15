@@ -44,7 +44,7 @@ if(isset($enviar)){
 	</div>
 
 	<div class="form-group">
-		<button type="submit" class="btn btn-success" name="enviar"><i class="fa fa-check"></i> Agregar Producto</button>
+		<button type="submit" class="btn btn-success" name="enviar"><i class="fa fa-check"></i>Modificar</button>
 	</div>
 
 	<input type="hidden" name="idpro" value="<?=$id?>">
