@@ -24,7 +24,7 @@ if (isset($finalizar)) {
         $mysqli->query("INSERT INTO productos_compra (id_compra,id_producto,cantidad,monto) VALUES ('$ultima_compra','" . $r2['id_producto'] . "','" . $r2['cant'] . "','$monto')");
     }
 
-    
+
     //Aquí podemos agregar PayPal
     $mysqli->query("DELETE FROM carro WHERE id_cliente = '$id_cliente'");
     alert("Se ha finalizado la compra");
@@ -40,7 +40,8 @@ if (isset($finalizar)) {
         <th>Nombre del producto</th>
         <th>Cantidad</th>
         <th>Precio por unidad</th>
-        <th>Precio Total</th>
+        <th>Oferta</th>
+        <th>Precio total</th>
     </tr>
 
     <?php
@@ -52,17 +53,31 @@ if (isset($finalizar)) {
         $q2 = $mysqli->query("SELECT * FROM productos WHERE id = '" . $r['id_producto'] . "'");
         $r2 = mysqli_fetch_array($q2);
 
+        $preciototal = 0;
+        if ($r2['oferta'] > 0) {
+            if (strlen($r2['oferta']) == 1) {
+                $desc = "0.0" . $r2['oferta'];
+            } else {
+                $desc = "0." . $r2['oferta'];
+            }
+            $preciototal = $r2['price'] - ($r2['price'] * $desc);
+        } else {
+            $preciototal = $r2['price'];
+        }
+
         $nombre_producto = $r2['name'];
 
         $cantidad = $r['cant'];
 
         $precio_unidad = $r2['price'];
 
-        $precio_total = $cantidad * $precio_unidad;
+        $precio_total = $cantidad * $preciototal;
 
         $imagen_producto = $r2['imagen'];
 
         $monto_total = $monto_total + $precio_total;
+
+        
 
     ?>
         <tr>
@@ -70,7 +85,17 @@ if (isset($finalizar)) {
             <td><?= $nombre_producto ?></td>
             <td><?= $cantidad ?></td>
             <td><?= $precio_unidad ?> <?= $divisa ?></td>
-            <td><?= $precio_total ?> <?= $divisa ?></td>
+            <td>
+                <?php
+                if ($r2['oferta'] > 0) {
+                    echo $r2['oferta'] . "% de descuento";
+                } else {
+                    echo "Sin descuento";
+                }
+                ?>
+
+            </td>
+            <td><?=$preciototal?> <?=$divisa?></td>
         </tr>
     <?php
     }

@@ -4,6 +4,7 @@ check_admin();
 if (isset($enviar)) {
 	$name = clear($name);
 	$price = clear($price);
+	$oferta = clear($oferta);
 
 	$imagen = "";
 
@@ -12,7 +13,7 @@ if (isset($enviar)) {
 		move_uploaded_file($_FILES['imagen']['tmp_name'], "productos/" . $imagen);
 	}
 
-	$mysqli->query("INSERT INTO productos (name,price,imagen) VALUES ('$name','$price','$imagen')");
+	$mysqli->query("INSERT INTO productos (name,price,imagen,oferta) VALUES ('$name','$price','$imagen','$oferta')"); // ferta sin $ ////////////////////
 	alert("Producto agregado");
 	redir("?p=agregar_producto");
 }
@@ -56,6 +57,32 @@ if (isset($eliminar)) {
 	</div>
 
 	<div class="form-group">
+		<select name="oferta" class="form-control">
+			<option value="0">0% de Descuento</option>
+			<option value="5">5% de Descuento</option>
+			<option value="10">10% de Descuento</option>
+			<option value="15">15% de Descuento</option>
+			<option value="20">20% de Descuento</option>
+			<option value="25">25% de Descuento</option>
+			<option value="30">30% de Descuento</option>
+			<option value="35">35% de Descuento</option>
+			<option value="40">40% de Descuento</option>
+			<option value="45">45% de Descuento</option>
+			<option value="50">50% de Descuento</option>
+			<option value="55">55% de Descuento</option>
+			<option value="60">60% de Descuento</option>
+			<option value="65">65% de Descuento</option>
+			<option value="70">70% de Descuento</option>
+			<option value="75">75% de Descuento</option>
+			<option value="80">80% de Descuento</option>
+			<option value="85">85% de Descuento</option>
+			<option value="90">90% de Descuento</option>
+			<option value="95">95% de Descuento</option>
+			<option value="99">99% de Descuento</option>
+		</select>
+	</div>
+
+	<div class="form-group">
 		<button type="submit" class="btn btn-success" name="enviar"><i class="fa fa-check"></i> Agregar Producto</button>
 	</div>
 
@@ -67,6 +94,8 @@ if (isset($eliminar)) {
 	<tr>
 		<th>Nombre</th>
 		<th>Precio</th>
+		<th>Descuento</th>
+		<th>Precio total</th>
 		<th>Imagen</th>
 		<th>Categoria</th>
 		<th>Acciones</th>
@@ -75,6 +104,7 @@ if (isset($eliminar)) {
 	<?php
 	$prod = $mysqli->query("SELECT * FROM productos ORDER BY id DESC");
 	while ($rp = mysqli_fetch_array($prod)) {
+		$preciototal = 0;
 
 		$cat = $mysqli->query("SELECT * FROM categorias WHERE id = '" . $rp['id_categoria'] . "'");
 		if (mysqli_num_rows($cat) > 0) {
@@ -84,10 +114,33 @@ if (isset($eliminar)) {
 			$categoria = '--';
 		}
 
+		if($rp['oferta']>0){
+			if(strlen($rp['oferta'])==1){
+				$desc = "0.0".$rp['oferta'];
+			} else {
+				$desc = "0." .$rp['oferta'];
+			}
+			$preciototal = $rp['price'] -($rp['price'] * $desc);
+		} else {
+			$preciototal = $rp['price'];
+		}
+
 	?>
 		<tr>
 			<td><?= $rp['name'] ?></td>
 			<td><?= $rp['price'] ?></td>
+			<td>
+				<?php
+				if ($rp['oferta']>0) {
+					echo $rp['oferta']. "% de descuento";
+				} else {
+					echo "Sin descuento";
+				}
+				?>
+
+			</td>
+			<td><?= $preciototal ?></td>
+
 			<td><img src="productos/<?= $rp['imagen'] ?>" class="imagen_carro"></td>
 			<td><?= $categoria ?></td>
 			<td>
