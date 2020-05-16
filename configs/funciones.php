@@ -67,4 +67,36 @@ function connect(){
 	return $mysqli;
 }
 
+function fecha($fecha){
+	$e = explode("-",$fecha);
+
+	$year = $e[0];
+	$month = $e[1];
+	$e2 = explode(" ",$e[2]);
+	$day = $e2[0];
+	$time = $e2[1];
+
+	$e3 = explode(':',$time);
+	$hour = $e3[0];
+	$mins = $e3[1];
+
+	return $day."/".$month."/".$year." ".$hour.":".$mins;
+
+}
+
+function estado($id_estado){
+	if ($id_estado == 0) {
+		$status = "Iniciando";
+	} elseif ($id_estado == 1) {
+		$status = "Preparando";
+	} elseif ($id_estado == 2) {
+		$status = "Despachando";
+	} elseif ($id_estado == 3) {
+		$status = "Finalizado";
+	} else {
+		$status = "Indefinido";
+	}
+	return $status;
+}
+
 ?>

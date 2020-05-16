@@ -24,6 +24,9 @@ if (isset($_SESSION['id'])) { // si hay una sesion iniciada
 	<a href="?p=agregar_categoria">
 		<button class="btn btn-primary"><i class="fa fa-plus-circle"></i> Agregar Categoria</button></a>
 
+	<a href="?p=manejar_tracking">
+		<button class="btn btn-primary"><i class="fa fa-plus-circle"></i> Manejar Tracking</button></a>
+
 <?php
 } else { // si no hay una sesion iniciada
 ?>
