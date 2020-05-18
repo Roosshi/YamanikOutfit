@@ -1,4 +1,7 @@
 <?php
+
+include "config.php";
+
 $host_mysql = "localhost";
 $user_mysql = "root";
 $pass_mysql = "";
@@ -97,6 +100,16 @@ function estado($id_estado){
 		$status = "Indefinido";
 	}
 	return $status;
+}
+
+function admin_name_connected(){
+	$id = $_SESSION['id'];
+	$mysqli = connect();
+
+	$q = $mysqli->query("SELECT * FROM admins WHERE id = '$id'");
+	$r = mysqli_fetch_array($q);
+
+	return $r['name'];
 }
 
 ?>
