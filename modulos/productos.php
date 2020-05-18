@@ -1,27 +1,14 @@
-<select id="categoria" onchange="redir_cat()" class="form-control">
-	<option value="">Seleccione una categoria</option>
-	<?php
-	$cats = $mysqli->query("SELECT * FROM categorias ORDER BY categoria ASC");
-	while ($rcat = mysqli_fetch_array($cats)) {
-	?>
-		<option value="<?= $rcat['id'] ?>"><?= $rcat['categoria'] ?></option>
-	<?php
-	}
-	?>
-</select>
-
-
-
 <?php
-
 check_user("productos");
+
+
 
 if (isset($cat)) {
 	$sc = $mysqli->query("SELECT * FROM categorias WHERE id = '$cat'");
 	$rc = mysqli_fetch_array($sc);
-	?>
-	<h1>Categoria filtrada por: <?=$rc['categoria']?></h1>
-	<?php
+?>
+	<h1>Categoria filtrada por: <?= $rc['categoria'] ?></h1>
+<?php
 }
 
 if (isset($agregar) && isset($cant)) {
@@ -46,42 +33,74 @@ if (isset($agregar) && isset($cant)) {
 	redir("?p=productos");
 }
 
-if(isset($cat)){
-
-	$q = $mysqli->query("SELECT * FROM productos WHERE id_categoria = '$cat' ORDER BY id DESC"); // quitarlo del if y ponerlo arriba del while
-}else{
-	$q = $mysqli->query("SELECT * FROM productos  ORDER BY id DESC");
+if (isset($busq) && isset($cat)) {
+	$q = $mysqli->query("SELECT * FROM productos WHERE name like '%$busq%' AND id_categoria = '$cat'");
+} elseif (isset($cat) && !isset($busq)) {
+	$q = $mysqli->query("SELECT * FROM productos WHERE id_categoria = '$cat' ORDER BY id DESC");
+} elseif (isset($busq) && !isset($cat)) {
+	$q = $mysqli->query("SELECT * FROM productos WHERE name like '%$busq%'");
+} elseif (!isset($busq) && !isset($cat)) {
+	$q = $mysqli->query("SELECT * FROM productos ORDER BY id DESC");
+} else {
+	$q = $mysqli->query("SELECT * FROM productos ORDER BY id DESC");
 }
+?>
+<form method="post" action="">
+	<div class="row">
+		<div class="col-md-5">
+			<div class="form-group">
+				<input type="text" class="form-control" name="busq" placeholder="Coloca el nombre del producto" />
+			</div>
+		</div>
+		<div class="col-md-5">
+			<select id="categoria" name="cat" class="form-control">
+				<?php
+				$cats = $mysqli->query("SELECT * FROM categorias ORDER BY categoria ASC");
+				while ($rcat = mysqli_fetch_array($cats)) {
+				?>
+					<option value="<?= $rcat['id'] ?>"><?= $rcat['categoria'] ?></option>
+				<?php
+				}
+				?>
+			</select>
+		</div>
+		<div class="col-md-2">
+			<button type="submit" class="btn btn-primary" name="buscar"><i class="fa fa-search"></i> Buscar</button>
+		</div>
+	</div>
+</form>
+
+<?php
 
 
 while ($r = mysqli_fetch_array($q)) {
-	$preciototal = 0;       
-	if($r['oferta']>0){
-        if(strlen($r['oferta'])==1){
-            $desc = "0.0".$r['oferta'];
-        } else {
-            $desc = "0." .$r['oferta'];
-        }
-        $preciototal = $r['price'] -($r['price'] * $desc);
-    } else {
-        $preciototal = $r['price'];
-    }
+	$preciototal = 0;
+	if ($r['oferta'] > 0) {
+		if (strlen($r['oferta']) == 1) {
+			$desc = "0.0" . $r['oferta'];
+		} else {
+			$desc = "0." . $r['oferta'];
+		}
+		$preciototal = $r['price'] - ($r['price'] * $desc);
+	} else {
+		$preciototal = $r['price'];
+	}
 ?>
 	<div class="producto">
 		<div class="name_producto"><?= $r['name'] ?></div>
 		<div><img class="img_producto" src="productos/<?= $r['imagen'] ?>" /></div>
 		<?php
-		if($r['oferta']>0){
-			?>
-			<del><?= $r['price'] ?> <?= $divisa ?></del> <span class="precio"><?=$preciototal?> <?=$divisa?></span>
-			<?php
+		if ($r['oferta'] > 0) {
+		?>
+			<del><?= $r['price'] ?> <?= $divisa ?></del> <span class="precio"><?= $preciototal ?> <?= $divisa ?></span>
+		<?php
 		} else {
-			 ?>
-				<span class="precio"><br><?= $r['price'] ?> <?= $divisa ?></span>
-			 <?php
+		?>
+			<span class="precio"><br><?= $r['price'] ?> <?= $divisa ?></span>
+		<?php
 		}
 		?>
-		
+
 		<button class="btn btn-primary pull-right" onclick="agregar_carro('<?= $r['id'] ?>');"><i class="fa fa-shopping-cart"></i></button>
 	</div>
 <?php
@@ -95,9 +114,5 @@ while ($r = mysqli_fetch_array($q)) {
 		if (cant.length > 0) {
 			window.location = "?p=productos&agregar=" + idp + "&cant=" + cant;
 		}
-	}
-
-	function redir_cat() {
-		window.location = "?p=productos&cat=" + $("#categoria").val(); //Noseguro
 	}
 </script>

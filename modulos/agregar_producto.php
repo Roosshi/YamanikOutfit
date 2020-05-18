@@ -26,7 +26,7 @@ if (isset($eliminar)) {
 ?>
 <form method="post" action="" enctype="multipart/form-data">
 	<div class="form-group">
-		<input type="text" class="form-control" name="name" placeholder="Nombre del producto" />
+		<input type="text" class="form-control" name="name" placeholder="Nombre del producto" /> <!-- Agregar required para validar campo vacio y pattern="[A-z]" para numeros -->
 	</div>
 
 	<div class="form-group">
