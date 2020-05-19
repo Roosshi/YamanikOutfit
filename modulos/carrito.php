@@ -1,6 +1,24 @@
 <?php
 check_user('carrito');
 
+if(isset($eliminar)){
+    $eliminar = clear($eliminar);
+    $mysqli->query("DELETE FROM carro WHERE id ='$eliminar'");
+    redir("?p=carrito");
+}
+
+if(isset($id) && isset($modificar)){
+
+    $id = clear ($id);
+    $modificar = clear($modificar);
+
+    $mysqli->query("UPDATE carro SET cant = '$modificar' WHERE id = '$id'");
+    alert("Cantidad modificada");
+    redir("?p=carrito");
+
+}
+
+
 if (isset($finalizar)) {
 
     $monto = clear($monto_total);
@@ -42,6 +60,8 @@ if (isset($finalizar)) {
         <th>Precio por unidad</th>
         <th>Oferta</th>
         <th>Precio total</th>
+        <th>Precio neto</th>
+        <th>Accion</th>
     </tr>
 
     <?php
@@ -96,6 +116,11 @@ if (isset($finalizar)) {
 
             </td>
             <td><?=$preciototal?> <?=$divisa?></td>
+            <td><?=$precio_total?> <?=$divisa?></td>
+            <td>
+                <a onclick="modificar('<?=$r['id']?>')" href=""><i class="fa fa-edit" title="Modificar cantidad en carrito"></i></a>
+                <a href="?p=carrito&eliminar=<?=$r['id']?>"><i class="fa fa-times" title="Eliminar"></i></a>
+            </td>
         </tr>
     <?php
     }
@@ -111,3 +136,17 @@ if (isset($finalizar)) {
     <input type="hidden" name="monto_total" value="<?= $monto_total ?>">
     <button class="btn btn-primary" type="submit" name="finalizar"><i class="fa fa-check"></i>Finalizar Compra</button>
 </form>
+
+<script type="text/javascript">
+
+    function modificar(idc){
+        var new_cant = prompt("¿Cuál es la nueva cantidad?");
+
+        if(new_cant>0){
+            
+            window.location="?p=carrito&id="+idc+"&modificar="+new_cant;
+        }
+
+    }
+
+</script>

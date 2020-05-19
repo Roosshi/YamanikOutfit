@@ -88,7 +88,7 @@ while ($r = mysqli_fetch_array($q)) {
 ?>
 	<div class="producto">
 		<div class="name_producto"><?= $r['name'] ?></div>
-		<div><img class="img_producto" src="productos/<?= $r['imagen'] ?>" /></div>
+		<div><img class="img_producto" src="productos/<?= $r['imagen'] ?>" /></div><br> 
 		<?php
 		if ($r['oferta'] > 0) {
 		?>

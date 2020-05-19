@@ -45,6 +45,7 @@ if (!isset($p)) {
         <a href="?p=productos">Productos</a>
         <a href="?p=ofertas">Ofertas</a>
         <a href="?p=carrito">Carrito</a>
+        <a href="?p=miscompras">Mis compras</a>
         <!-- 
         <a href="?p=admin">Administrador</a> 
         -->
