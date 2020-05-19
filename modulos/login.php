@@ -19,7 +19,7 @@ if(isset($enviar)){
 		}
 	}else{
 		alert("Los datos no son validos",0,'login');
-		redir("?p=login");
+		//redir("?p=login");
 	}
 
 
@@ -40,7 +40,8 @@ if(isset($enviar)){
 				</div>
 
 				<div class="form-group">
-					<button class="btn btn-submit" name="enviar" type="submit"><i class="fa fa-sign-in"></i>Ingresar</button>
+					<button class="btn btn-submit" name="enviar" type="submit"><i class="fa fa-sign-in"></i> Ingresar</button>
 				</div>
 			</div>
 		</form>
+	</center>
