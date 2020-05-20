@@ -21,11 +21,11 @@ if(isset($enviar)){
 ?>
 <form method="post" action="" enctype="multipart/form-data">
 	<div class="form-group">
-		<input type="text" class="form-control" name="name" value="<?= $rq['name'] ?>" placeholder="Nombre del producto" />
+		<input type="text" class="form-control" name="name" value="<?= $rq['name'] ?>" placeholder="Nombre del producto" required />
 	</div>
 
 	<div class="form-group">
-		<input type="text" class="form-control" name="price" value="<?= $rq['price'] ?>" placeholder="Precio del producto" />
+		<input type="text" class="form-control" name="price" value="<?= $rq['price'] ?>" placeholder="Precio del producto"required/>
 	</div>
 
 	<div class="form-group">
