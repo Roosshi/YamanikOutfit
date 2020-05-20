@@ -5,6 +5,7 @@ if (isset($enviar)) {
 	$name = clear($name);
 	$price = clear($price);
 	$oferta = clear($oferta);
+	$categoria = clear($categoria);
 
 	$imagen = "";
 
@@ -13,7 +14,7 @@ if (isset($enviar)) {
 		move_uploaded_file($_FILES['imagen']['tmp_name'], "../productos/" . $imagen);
 	}
 
-	$mysqli->query("INSERT INTO productos (name,price,imagen,oferta) VALUES ('$name','$price','$imagen','$oferta')"); // ferta sin $ ////////////////////
+	$mysqli->query("INSERT INTO productos (name,price,imagen,oferta,id_categoria) VALUES ('$name','$price','$imagen','$oferta','$categoria')"); // ferta sin $ ////////////////////
 	alert("Producto agregado");
 	redir("?p=agregar_producto");
 }
