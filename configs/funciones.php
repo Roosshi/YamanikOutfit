@@ -112,4 +112,20 @@ function admin_name_connected(){
 	return $r['name'];
 }
 
+function estado_pago($estado){
+
+	if($estado==0){
+		$estado = "Sin Verificar";
+	}elseif($estado==1){
+		$estado = "Verificado y Aprobado";
+	}elseif($estado==2){
+		$estado = "Reembolsado";
+	}else{
+		$estado = "Sin Verificar";
+	}
+
+	return $estado;
+
+}
+
 ?>

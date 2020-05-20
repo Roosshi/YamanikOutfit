@@ -42,11 +42,20 @@ if (isset($finalizar)) {
         $mysqli->query("INSERT INTO productos_compra (id_compra,id_producto,cantidad,monto) VALUES ('$ultima_compra','" . $r2['id_producto'] . "','" . $r2['cant'] . "','$monto')");
     }
 
-
-    //Aquí podemos agregar PayPal
     $mysqli->query("DELETE FROM carro WHERE id_cliente = '$id_cliente'");
-    alert("Se ha finalizado la compra");
-    redir("./");
+
+	$sc = $mysqli->query("SELECT * FROM compra WHERE id_cliente = '$id_cliente' ORDER BY id DESC LIMIT 1");
+	$rc = mysqli_fetch_array($sc);
+
+	$id_compra = $rc['id'];
+
+	alert("Se ha finalizado la compra",1,'ver_compra&id='.$id_compra);
+	redir("?p=ver_compra&id=".$id_compra);
+
+    //--ANTES ESTABAS ASI--
+    //$mysqli->query("DELETE FROM carro WHERE id_cliente = '$id_cliente'");
+    //alert("Se ha finalizado la compra");
+    //redir("./");
 }
 ?>
 
