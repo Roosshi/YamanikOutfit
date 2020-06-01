@@ -14,7 +14,7 @@ if (isset($enviar)) {
 		move_uploaded_file($_FILES['imagen']['tmp_name'], "../productos/" . $imagen);
 	}
 
-	$mysqli->query("INSERT INTO productos (name,price,imagen,oferta,id_categoria) VALUES ('$name','$price','$imagen','$oferta','$categoria')"); // ferta sin $ ////////////////////
+	$mysqli->query("INSERT INTO productos (name,price,imagen,oferta,id_categoria) VALUES ('$name','$price','$imagen','$oferta','$categoria')");
 	alert("Producto agregado");
 	redir("?p=agregar_producto");
 }
@@ -30,11 +30,11 @@ if (isset($eliminar)) {
 
 <form method="post" action="" enctype="multipart/form-data">
 	<div class="form-group">
-		<input type="text" class="form-control" name="name" placeholder="Nombre del producto" required/> <!-- Agregar required para validar campo vacio y pattern="[A-z]" para numeros -->
+		<input type="text" class="form-control" name="name" placeholder="Nombre del producto" minlength="10" maxlength="50" required/> 
 	</div>
 
 	<div class="form-group">
-		<input type="number" class="form-control" name="price" placeholder="Precio del producto" required/>
+		<input type="number" class="form-control" name="price" min="0" step="0.01" placeholder="Precio del producto" required/>
 	</div>
 
 	<label>Imagen del producto</label>

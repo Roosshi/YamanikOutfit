@@ -45,20 +45,20 @@ if(isset($enviar)){
 			<div class="centrar_login">
 				<label><h2><i class="fa fa-key"></i> Registrate</h2></label>
 				<div class="form-group">
-					<input type="text" autocomplete="off" class="form-control" placeholder="Usuario" name="username" required/>
+					<input type="text" autocomplete="off" class="form-control" placeholder="Usuario" name="username" minlength="5" maxlength="50" required/>
 				</div>
 
 				<div class="form-group">
-					<input type="password" class="form-control" placeholder="Contraseña" name="password" required/>
+					<input type="password" class="form-control" placeholder="Contraseña" name="password" minlength="3" maxlength="50" required/>
 				</div>
 
 				<div class="form-group">
-					<input type="password" class="form-control" placeholder="Confirmar Contraseña" name="cpassword" required/>
+					<input type="password" class="form-control" placeholder="Confirmar Contraseña" minlength="3" maxlength="50" name="cpassword" required/>
 				</div>
 
 
 				<div class="form-group">
-					<input type="text" autocomplete="off" class="form-control" placeholder="Nombre" name="nombre" required/>
+					<input type="text" autocomplete="off" class="form-control" placeholder="Nombre y Apellido" name="nombre" minlength="10" maxlength="50" required/>
 				</div>
 
 				<div class="form-group">
