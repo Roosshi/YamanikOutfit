@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-05-2020 a las 03:13:30
+-- Tiempo de generación: 02-06-2020 a las 04:06:35
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.10
 
@@ -118,7 +118,9 @@ CREATE TABLE `compra` (
 
 INSERT INTO `compra` (`id`, `id_cliente`, `fecha`, `monto`, `estado`) VALUES
 (13, 1, '2020-05-19 17:31:06', 500, 1),
-(14, 2, '2020-05-19 17:43:50', 335, 1);
+(14, 2, '2020-05-19 17:43:50', 335, 1),
+(15, 1, '2020-05-19 18:17:04', 800, 0),
+(16, 1, '2020-05-19 22:13:51', 180, 1);
 
 -- --------------------------------------------------------
 
@@ -133,7 +135,7 @@ CREATE TABLE `pagos` (
   `comprobante` varchar(255) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `fecha` datetime NOT NULL,
-  `estado` int(11) NOT NULL
+  `estado` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -142,7 +144,8 @@ CREATE TABLE `pagos` (
 
 INSERT INTO `pagos` (`id`, `id_cliente`, `id_compra`, `comprobante`, `nombre`, `fecha`, `estado`) VALUES
 (4, 1, 13, '023525237.jpg', 'Romualdo Beltran Felix', '2020-05-19 17:35:25', 1),
-(5, 2, 14, '024425611.jpg', 'Carmelo Rodriguez', '2020-05-19 17:44:25', 1);
+(5, 2, 14, '024425611.jpg', 'Carmelo Rodriguez', '2020-05-19 17:44:25', 1),
+(6, 1, 16, '071404642.jpg', 'Rogelio Hernandez', '2020-05-19 22:14:04', 1);
 
 -- --------------------------------------------------------
 
@@ -172,7 +175,9 @@ INSERT INTO `productos` (`id`, `name`, `price`, `imagen`, `id_categoria`, `ofert
 (48, 'Vestido Negro (S)', 200, 'Vestido Negro (S)577.jpg', 13, 0),
 (49, 'Vestio Naranja (M)', 500, 'Vestio Naranja (M)44.jpg', 13, 0),
 (50, 'Vestido con Flores (S)', 200, 'Vestido con Flores (S)577.jpg', 13, 0),
-(51, 'Vestido Rojo (S)', 300, 'Vestido Rojo (S)94.jpg', 13, 0);
+(51, 'Vestido Rojo (S)', 300, 'Vestido Rojo (S)94.jpg', 13, 0),
+(54, 'Vestido Mostaza (S)', 500, 'Vestido Mostaza (S)395.jpg', 13, 50),
+(55, 'Falda Negra (S)', 500, 'Falda Negra (S)793.jpg', 11, 50);
 
 -- --------------------------------------------------------
 
@@ -211,7 +216,10 @@ INSERT INTO `productos_compra` (`id`, `id_compra`, `id_producto`, `cantidad`, `m
 (24, 13, 51, 1, 300),
 (25, 13, 50, 1, 200),
 (26, 14, 48, 1, 200),
-(27, 14, 27, 1, 150);
+(27, 14, 27, 1, 150),
+(28, 15, 51, 1, 300),
+(29, 15, 49, 1, 500),
+(30, 16, 42, 1, 200);
 
 --
 -- Índices para tablas volcadas
@@ -279,13 +287,13 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT de la tabla `carro`
 --
 ALTER TABLE `carro`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
@@ -297,25 +305,25 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de la tabla `compra`
 --
 ALTER TABLE `compra`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT de la tabla `productos_compra`
 --
 ALTER TABLE `productos_compra`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
