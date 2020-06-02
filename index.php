@@ -31,7 +31,6 @@ if (!isset($p)) {
 
 <body>
     <div class="logo">
-        <a href="/">
             <img src="img/principal/logo2.png" alt="Logotipo de Bienes y Raices">
         </a>
     </div>
