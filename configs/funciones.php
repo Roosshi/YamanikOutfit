@@ -58,6 +58,22 @@ function nombre_cliente($id_cliente){
 	return $r['name'];
 }
 
+function direccion($direccion){
+	$mysqli = connect();
+
+	$q = $mysqli->query("SELECT * FROM pagos WHERE id = '$direccion'");
+	$r = mysqli_fetch_array($q);
+	return $r['direccion'];
+}
+
+function numero($numero){
+	$mysqli = connect();
+
+	$q = $mysqli->query("SELECT * FROM pagos WHERE id = '$numero'");
+	$r = mysqli_fetch_array($q);
+	return $r['numero'];
+}
+
 function connect(){
 	$host_mysql = "localhost";
 	$user_mysql = "root";

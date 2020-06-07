@@ -11,7 +11,7 @@ if(isset($subir)){
 		move_uploaded_file($_FILES['comprobante']['tmp_name'], "comprobantes/".$comprobante);
 	}
 
-	$mysqli->query("INSERT INTO pagos (id_cliente,id_compra,comprobante,nombre,fecha) VALUES ('".$_SESSION['id_cliente']."','$id','$comprobante','$nombre',NOW())");
+	$mysqli->query("INSERT INTO pagos (id_cliente,id_compra,comprobante,nombre,direccion,numero,fecha) VALUES ('".$_SESSION['id_cliente']."','$id','$comprobante','$nombre','$direccion','$numero',NOW())");
 
 	alert("Comprobante enviado",1,'miscompras');
 	redir("?p=miscompras");
@@ -45,7 +45,13 @@ if(isset($subir)){
 		<input type="file" class="form-control" name="comprobante" title="Adjuntar Comprobante" required/>
 	</div>
 	<div class="form-group">
-		<input type="text" class="form-control" name="nombre" title="Nombre de la persona que transfiere" placeholder="Nombre del remitente" required/>
+		<input type="text" class="form-control" name="nombre" title="Nombre de la persona que transfiere" placeholder="Nombre del remitente" minlength="10" maxlength="50" required/>
+	</div>
+	<div class="form-group">
+		<input type="text" class="form-control" name="direccion" title="Direccion" placeholder="Direccion" minlength="15" maxlength="100" required/>
+	</div>
+	<div class="form-group">
+		<input type="number" class="form-control" name="numero" title="Numero" placeholder="Numero Celular" required/> 
 	</div>
 	<div class="form-group">
 		<input type="submit" name="subir" class="btn btn-primary" value="Enviar"/>

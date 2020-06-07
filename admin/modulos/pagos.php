@@ -20,6 +20,8 @@ if(isset($aceptar)){
 <table class="table table-striped">
 	<tr>
 		<th>Cliente</th>
+		<th>Direccion</th>
+		<th>Numero Celular</th>
 		<th>Fecha</th>
 		<th>Comprobante</th>
 		<th>Nombre de comprobante</th>
@@ -33,6 +35,8 @@ if(isset($aceptar)){
 		?>
 		<tr>
 			<td><?=nombre_cliente($r['id_cliente'])?></td>
+			<td><?=$r['direccion']?></td>
+			<td><?=$r['numero']?></td>
 			<td><?=fecha($r['fecha'])?></td>
 			<td><a style="color:#333" target="_blank" href="../comprobantes/<?=$r['comprobante']?>">Ver Comprobante <i class="fa fa-eye"></i></a></td>
 			<td><?=$r['nombre']?></td>
@@ -58,6 +62,8 @@ if(isset($aceptar)){
 <table class="table table-striped">
 	<tr>
 		<th>Cliente</th>
+		<th>Direccion</th>
+		<th>Numero Celular</th>
 		<th>Fecha</th>
 		<th>Comprobante</th>
 		<th>Nombre de comprobante</th>
@@ -71,6 +77,8 @@ if(isset($aceptar)){
 		?>
 		<tr>
 			<td><?=nombre_cliente($r['id_cliente'])?></td>
+			<td><?=$r['direccion']?></td>
+			<td><?=$r['numero']?></td>
 			<td><?=fecha($r['fecha'])?></td>
 			<td><a style="color:#333" target="_blank" href="../comprobantes/<?=$r['comprobante']?>">Ver Comprobante <i class="fa fa-eye"></i></a></td>
 			<td><?=$r['nombre']?></td>
