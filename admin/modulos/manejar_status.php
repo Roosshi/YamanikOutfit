@@ -26,6 +26,8 @@ if(isset($modificar)){
     </div>
 
     <div class="form-group">
-        <input class="btn btn-primary" type="submit" value="Set Status" name="modificar"/>
+        <input class="btn btn-primary" type="submit" value="Modificar" name="modificar"/>
     </div>
+
+    <input class="btn btn-primary" type="button" onclick="history.back()" name="volver atrás" value="Regresar">
 </form>

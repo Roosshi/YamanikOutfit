@@ -33,7 +33,7 @@ if(isset($eliminar)){
 
 <form method="post" action="">
 	<div class="form-group">
-		<input type="text" class="form-control" name="categoria" minlength="10" maxlength="20" placeholder="Categoria" required/>
+		<input type="text" class="form-control" name="categoria" minlength="5" maxlength="20" placeholder="Categoria" required/>
 	</div>
 
 	<div class="form-group">

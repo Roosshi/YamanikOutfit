@@ -46,3 +46,5 @@ Estado: <?=estado($r['estado'])?><br>
         }
     ?>
 </table>
+
+<input class="btn btn-primary" type="button" onclick="history.back()" name="volver atrás" value="Regresar">

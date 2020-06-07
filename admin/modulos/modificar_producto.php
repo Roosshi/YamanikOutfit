@@ -77,4 +77,6 @@ if(isset($enviar)){
 
 	<input type="hidden" name="idpro" value="<?=$id?>">
 
+	<input class="btn btn-primary" type="button" onclick="history.back()" name="volver atrás" value="Regresar">
+
 </form>

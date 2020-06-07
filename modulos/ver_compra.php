@@ -62,11 +62,12 @@ if (mysqli_num_rows($s) > 0) {
         </a>
     <?php
     }
-    ?>
-
+    ?> <br> <br>
+<input class="btn btn-primary" type="button" onclick="history.back()" name="volver atrás" value="Regresar">
 <?php
 
 } else {
     alert("Ha ocurrido un error");
     redir("?p=miscompras");
 }
+
