@@ -14,6 +14,7 @@ if (isset($eliminar)) {
     $mysqli->query("DELETE FROM productos_compra WHERE id_compra = '$eliminar'");
 
     $mysqli->query("DELETE FROM compra WHERE id = '$eliminar'");
+    alert("Estado eliminado");
     redir("?p=manejar_tracking");
 }
 

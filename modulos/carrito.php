@@ -4,6 +4,7 @@ check_user('carrito');
 if(isset($eliminar)){
     $eliminar = clear($eliminar);
     $mysqli->query("DELETE FROM carro WHERE id ='$eliminar'");
+    alert("Producto eliminado");
     redir("?p=carrito");
 }
 

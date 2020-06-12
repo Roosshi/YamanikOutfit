@@ -21,6 +21,7 @@ if (isset($enviar)) {
 
 if (isset($eliminar)) {
 	$mysqli->query("DELETE FROM productos WHERE id  = '$eliminar'");
+	alert("Producto eliminado");
 	redir("?p=agregar_producto");
 }
 
